@@ -41,6 +41,18 @@ const initialState = {
           ...state,
           completedTodos: updatedCompletedTodos,
         };
+
+        // reducers.js
+case 'EDIT_TODO':
+  const { index, updatedTodo } = action.payload;
+  const updatedAllTodos = [...state.allTodos];
+  updatedAllTodos[index] = updatedTodo;
+
+  return {
+    ...state,
+    allTodos: updatedAllTodos,
+  };
+
   
       case 'TOGGLE_COMPLETED_SCREEN':
         // Toggle between "To Do" and "Completed" screens.
@@ -53,6 +65,8 @@ const initialState = {
         return state;
     }
   };
+
+  
   
   export default rootReducer;
   

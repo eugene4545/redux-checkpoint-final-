@@ -1,7 +1,11 @@
+*{
+  font-family: 'Montserrat Alternates', sans-serif;
+}
 body{
   background-color: #1f1e1e;
   color: white;
   overflow: hidden;
+  font-family: 'Montserrat Alternates', sans-serif;
 }
 
 h1{

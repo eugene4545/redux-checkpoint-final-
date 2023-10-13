@@ -8,9 +8,13 @@ import {
   completeTodo,
   deleteCompletedTodo,
   toggleCompletedScreen,
+  editTodo,
 } from './redux/Actions';
 import { AiOutlineDelete } from 'react-icons/ai';
 import { BsCheckLg } from 'react-icons/bs';
+import { AiTwotoneEdit } from 'react-icons/ai';
+
+import EditTask from './EditTask';
 import './App.css'
 
 function App({
@@ -22,9 +26,17 @@ function App({
   completeTodo,
   deleteCompletedTodo,
   toggleCompletedScreen,
+  editTodo,
 }) {
   const [newTodoTitle, setNewTodoTitle] = useState('');
   const [newDescription, setNewDescription] = useState('');
+
+  const [editingTaskIndex, setEditingTaskIndex] = useState(null);
+
+  
+
+
+
 
   const handleAddNewToDo = () => {
     const newTodoObj = {
@@ -48,6 +60,9 @@ function App({
     completeTodo(index);
   };
 
+  const handleEdit = (index) => {
+    setEditingTaskIndex(index);
+  };
   return (
     <div className="App">
       <h1>My Todos</h1>
@@ -72,6 +87,9 @@ function App({
               placeholder="What's the description of your To Do?"
             />
           </div>
+
+          
+
           <div className="todo-input-item">
             <button
               className="primary-btn"
@@ -105,6 +123,13 @@ function App({
                   <p>{item.description}</p>
                 </div>
                 <div>
+
+                  <AiTwotoneEdit 
+                  title="Edit"
+                  className='icon'
+                  onClick={()=>handleEdit(index)}
+                  />
+
                   <AiOutlineDelete
                     title="Delete?"
                     className="icon"
@@ -124,7 +149,8 @@ function App({
                 <div>
                   <h3>{item.title}</h3>
                   <p>{item.description}</p>
-                  <p> <i>Completed at: {item.completedOn.toLocaleString()}</i></p>
+                  <p> <i>Completed at: {item.completedOn.toLocaleString()} </i></p>
+                  <p>Good job!!</p>
 
                 </div>
                 <div>
@@ -137,6 +163,15 @@ function App({
             ))}
         </div>
       </div>
+
+      {editingTaskIndex !== null && (
+        <EditTask
+          task={allTodos[editingTaskIndex]}
+          index={editingTaskIndex} // Pass the 'index'
+          onCancel={() => setEditingTaskIndex(null)}
+        />
+      )}
+
     </div>
   );
 }
@@ -153,4 +188,5 @@ export default connect(mapStateToProps, {
   completeTodo,
   deleteCompletedTodo,
   toggleCompletedScreen,
+  editTodo,
 })(App);

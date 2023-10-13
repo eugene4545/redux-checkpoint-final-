@@ -26,4 +26,10 @@ export const deleteCompletedTodo = (index) => ({
     type: 'DELETE_COMPLETED_TODO',
     payload: index,
   });
+
+  export const editTodo = (index, updatedTodo) => ({
+    type: 'EDIT_TODO',
+    payload: { index, updatedTodo },
+  });
+  
   
