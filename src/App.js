@@ -10,7 +10,7 @@ import {
   toggleCompletedScreen,
   editTodo,
 } from './redux/Actions';
-import { AiOutlineDelete } from 'react-icons/ai';
+import { MdDelete } from 'react-icons/md';
 import { BsCheckLg } from 'react-icons/bs';
 import { AiTwotoneEdit } from 'react-icons/ai';
 
@@ -66,7 +66,6 @@ function App({
   return (
     <div className="App">
       <h1>My Todos</h1>
-
       <div className="todo-wrapper">
         <div className="todo-input">
           <div className="todo-input-item">
@@ -75,7 +74,7 @@ function App({
               type="text"
               value={newTodoTitle}
               onChange={(e) => setNewTodoTitle(e.target.value)}
-              placeholder="What's the title of your To Do?"
+              placeholder="What are we doing today?"
             />
           </div>
           <div className="todo-input-item">
@@ -84,7 +83,7 @@ function App({
               type="text"
               value={newDescription}
               onChange={(e) => setNewDescription(e.target.value)}
-              placeholder="What's the description of your To Do?"
+              placeholder="describe what you want to do?"
             />
           </div>
 
@@ -118,7 +117,7 @@ function App({
           {isCompletedScreen === false &&
             allTodos.map((item, index) => (
               <div className="todo-list-item" key={index}>
-                <div>
+                <div >
                   <h3>{item.title}</h3>
                   <p>{item.description}</p>
                 </div>
@@ -130,14 +129,15 @@ function App({
                   onClick={()=>handleEdit(index)}
                   />
 
-                  <AiOutlineDelete
+                  <MdDelete
                     title="Delete?"
-                    className="icon"
+                    className="icon del"
                     onClick={() => handleToDoDelete(index)}
                   />
                   <BsCheckLg
                     title="Completed?"
-                    className="check-icon"
+                    className="check-icon icon"
+                    id='check-icon'
                     onClick={() => handleComplete(index)}
                   />
                 </div>
@@ -154,7 +154,7 @@ function App({
 
                 </div>
                 <div>
-                  <AiOutlineDelete
+                  <MdDelete
                     className="icon"
                     onClick={() => handleCompletedTodoDelete(index)}
                   />
