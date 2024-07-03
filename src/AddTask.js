@@ -10,7 +10,7 @@ function AddTask({ addTodo }) {
   const [newDescription, setNewDescription] = useState('');
 
   const handleAddNewToDo = () => {
-    const newTodoObj = {
+    const newTodoObj = {  
       title: newTodoTitle,
       description: newDescription,
     };
